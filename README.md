@@ -1,3 +1,3 @@
 # tps-scripts
 
-A10 Network Threat Protection System (TPS) Scripts
+A10 Network Thunder Threat Protection Applicance (TPS) Scripts
