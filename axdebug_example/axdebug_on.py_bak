@@ -3,7 +3,7 @@
 # Eric Chou ericc@a10networks.com
 
 import requests, json
-#from json_config import hostname
+from json_config import hostname
 
 # Basic infomation
 host = '192.168.199.152'
@@ -23,20 +23,23 @@ print("This is the signature token: " + signature)
 common_headers = {'Content-type' : 'application/json', 'Authorization' : 'A10 {}'.format(signature)}
 
 
-clideploy_path = "/axapi/v3/clideploy/"
-url = base_url + clideploy_path
-clideploy_payload = {
-    "commandList":["axdebug", "capture save TEST2", "capture detail", "exit"]
-}
-
-r = requests.post(url, data=json.dumps(clideploy_payload), headers=common_headers, verify=False)
+# Simple GET 'show version' example
+version_endpoint = '/axapi/v3/version/oper'
+url = base_url + version_endpoint
+r = requests.get(url, headers=common_headers, verify=False)
 print(r.content)
 
+
+# Simple POST example to change hostname
+hostname_endpoint = hostname.hostname_endpoint
+url = base_url + hostname_endpoint
+hostname_payload = hostname.hostname_payload
+r = requests.post(url, data=json.dumps(hostname_payload), headers=common_headers, verify=False)
+print(r.content)
 
 # Commit changes
 hostname_endpoint = '/axapi/v3/write/memory'
 url = base_url + hostname_endpoint
-print("write mem")
 r = requests.post(url, headers=common_headers, verify=False)
 print(r.content)
 

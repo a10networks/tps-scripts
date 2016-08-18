@@ -26,7 +26,8 @@ common_headers = {'Content-type' : 'application/json', 'Authorization' : 'A10 {}
 clideploy_path = "/axapi/v3/clideploy/"
 url = base_url + clideploy_path
 clideploy_payload = {
-    "commandList":["axdebug", "capture save TEST2", "capture detail", "exit"]
+    #"commandList":["axdebug", "capture save TEST", "capture detail"]
+    "commandList":["router bgp 64513", "network 5.5.5.5/32", "end", "wr mem"]
 }
 
 r = requests.post(url, data=json.dumps(clideploy_payload), headers=common_headers, verify=False)
