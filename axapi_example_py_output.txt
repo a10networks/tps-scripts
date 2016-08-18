@@ -1,0 +1,40 @@
+This is the signature token: f530e9636cd48c2fff6c6dec6dee8b
+{
+  "version": {
+    "oper" : {
+      "hw-platform":"TH4435 TPS",
+      "copyright":"Copyright 2007-2014 by A10 Networks, Inc.",
+      "sw-version":"3.2.1 build 175 (May-17-2016,16:57)",
+      "plat-features":"",
+      "boot-from":"HD_PRIMARY",
+      "serial-number":"TH44113014060008",
+      "firmware-version":"5.6",
+      "hd-pri":"3.2.1.175",
+      "hd-sec":"3.0.0-TPS-P2-SP26.4",
+      "cf-pri":"3.0.0.419",
+      "cf-sec":"",
+      "last-config-saved-time":"Aug-17-2016, 18:55",
+      "virtualization-type":"NA",
+      "hw-code":"140611",
+      "current-time":"Aug-17-2016, 18:55",
+      "up-time":"20 days, 18 hours, 22 minutes"
+    },
+    "a10-url":"/axapi/v3/version/oper"
+  }
+}
+
+{
+  "hostname": {
+    "value":"TH4435-new",
+    "uuid":"f7d3cd9c-00e6-11e6-adfd-6b1a7c01bae6",
+    "a10-url":"/axapi/v3/hostname"
+  }
+}
+
+{
+  "response": {
+    "status": "OK"
+  }
+}
+Log off
+
