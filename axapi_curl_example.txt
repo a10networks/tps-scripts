@@ -1,3 +1,6 @@
+# Speical thanks to Egor for his Curlify module. Check it out at: 
+# https://github.com/oeegor/curlify/blob/master/curlify.py
+
 1. Please replace host IP (or name), authentication username and password. 
 2. Replace the signature after the first curl operation from the return response. 
 3. Used -k option for curl to bypass SSL certfication restriction
