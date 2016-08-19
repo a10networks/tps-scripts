@@ -1,0 +1,76 @@
+1. Please replace host IP (or name), authentication username and password. 
+2. Replace the signature after the first curl operation from the return response. 
+3. Used -k option for curl to bypass SSL certfication restriction
+
+- Authentication 
+
+curl -k -X POST -H 'Content-Length: 57' -H 'content-type: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -d '{"credentials": {"username": "admin", "password": "a10"}}' 'https://192.168.199.152/axapi/v3/auth'
+
+- GET operation for 'show version'
+
+curl -k -X GET -H 'Authorization: A10 fa260844859ac9087099d99c8a2c65' -H 'Content-type: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -d '' 'https://192.168.199.152/axapi/v3/version/oper'
+
+- POST operaiton for changing hostname
+
+curl -k -X POST -H 'Content-Length: 37' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -H 'Content-type: application/json' -H 'Authorization: A10 fa260844859ac9087099d99c8a2c65' -d '{"hostname": {"value": "TH4435-new"}}' 'https://192.168.199.152/axapi/v3/hostname'
+
+- POST operioatn for 'write memory'
+
+curl -k -X POST -H 'Content-Length: 0' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -H 'Content-type: application/json' -H 'Authorization: A10 fa260844859ac9087099d99c8a2c65' -d '' 'https://192.168.199.152/axapi/v3/write/memory'
+
+- POST operation for logoff
+
+curl -k -X POST -H 'Content-Length: 0' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -H 'Content-type: application/json' -H 'Authorization: A10 fa260844859ac9087099d99c8a2c65' -d '' 'https://192.168.199.152/axapi/v3/logoff'
+
+** Example Output **
+
+echou-a10:axapi echou$ curl -k -X POST -H 'Content-Length: 57' -H 'content-type: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -d '{"credentials": {"username": "admin", "password": "a10"}}' 'https://192.168.199.152/axapi/v3/auth'
+{
+  "authresponse" : {
+     "signature":"fa260844859ac9087099d99c8a2c65",
+     "description":"the signature should be set in Authorization header for following request."
+   }
+}echou-a10:axapi echou$ curl -k -X GET -H 'Authorization: A10 fa260844859ac9087099d99c8a265' -H 'Content-type: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -d '' 'https://192.168.199.152/axapi/v3/version/oper'
+{
+  "version": {
+    "oper" : {
+      "hw-platform":"TH4435 TPS",
+      "copyright":"Copyright 2007-2014 by A10 Networks, Inc.",
+      "sw-version":"3.2.1 build 175 (May-17-2016,16:57)",
+      "plat-features":"",
+      "boot-from":"HD_PRIMARY",
+      "serial-number":"TH44113014060008",
+      "firmware-version":"5.6",
+      "hd-pri":"3.2.1.175",
+      "hd-sec":"3.0.0-TPS-P2-SP26.4",
+      "cf-pri":"3.0.0.419",
+      "cf-sec":"",
+      "last-config-saved-time":"Aug-18-2016, 18:16",
+      "virtualization-type":"NA",
+      "hw-code":"140611",
+      "current-time":"Aug-18-2016, 18:19",
+      "up-time":"21 days, 17 hours, 47 minutes"
+    },
+    "a10-url":"/axapi/v3/version/oper"
+  }
+}
+echou-a10:axapi echou$ curl -k -X POST -H 'Content-Length: 37' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -H 'Content-type: application/json' -H 'Authorization: A10 fa260844859ac9087099d99c8a2c65' -d '{"hostname": {"value": "TH4435-new"}}' 'https://192.168.199.152/axapi/v3/hostname'
+{
+  "hostname": {
+    "value":"TH4435-new",
+    "uuid":"f7d3cd9c-00e6-11e6-adfd-6b1a7c01bae6",
+    "a10-url":"/axapi/v3/hostname"
+  }
+}
+echou-a10:axapi echou$ curl -k -X POST -H 'Content-Length: 0' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -H 'Content-type: application/json' -H 'Authorization: A10 fa260844859ac9087099d99c8a2c65' -d '' 'https://192.168.199.152/axapi/v3/write/memory'
+{
+  "response": {
+    "status": "OK"
+  }
+}echou-a10:axapi echou$ curl -k -X POST -H 'Content-Length: 0' -H 'Accept-Encoding: gzip,deflate' -H 'Accept: */*' -H 'User-Agent: python-requests/2.3.0 CPython/2.7.11 Darwin/15.6.0' -H 'Content-type: application/json' -H 'Authorization: A10 fa260844859ac9087099d99c8a2c65' -d '' 'https://192.168.199.152/axapi/v3/logoff'
+{
+  "response": {
+    "status": "OK"
+  }
+}echou-a10:axapi echou$
+
