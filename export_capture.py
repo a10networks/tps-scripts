@@ -2,8 +2,13 @@
 
 # Eric Chou ericc@a10networks.com
 
+"""
+CLI Equivalent: 
+TH4435#export capture-config <name> use-mgmt-port sftp://<user>:<password>@<host>/<location>/<filename>
+"""
+
 import requests, json
-#from json_config import hostname
+
 
 # Basic infomation
 host = '192.168.199.152'
@@ -23,10 +28,14 @@ print("This is the signature token: " + signature)
 common_headers = {'Content-type' : 'application/json', 'Authorization' : 'A10 {}'.format(signature)}
 
 
-clideploy_path = "/axapi/v3/clideploy/"
+clideploy_path = "/axapi/v3/export/"
 url = base_url + clideploy_path
 clideploy_payload = {
-    "commandList":["do axdebug", "capture save TEST2", "capture detail", "exit"]
+    "export":{
+        "capture-config": "TEST3",
+        "use-mgmt-port": "1",
+        "remote-file": "<see example>"
+    }
 }
 
 r = requests.post(url, data=json.dumps(clideploy_payload), headers=common_headers, verify=False)
