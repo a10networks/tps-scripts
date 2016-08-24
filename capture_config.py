@@ -2,8 +2,33 @@
 
 # Eric Chou ericc@a10networks.com
 
+"""
+
+1. Configure caputre file onbox first
+
+TH4435#confi t
+TH4435(config)#capture-config TEST3
+TH4435(config-capture-config)#?
+  capture-limit  Method to end packet-capture
+  clear          Clear or Reset Functions
+  do             To run exec commands in config mode
+  enable         Enable capture-config
+  end            Exit from configure mode
+  exit           Exit from configure mode or sub mode
+  filter         Filter packets to save using Berkeley Packet Filter syntax
+  length         Packet length Bytes to capture (Default 80)
+  no             Negate a command or set its defaults
+  show           Show Running System Information
+  write          Write Configuration
+TH4435(config-capture-config)#end
+TH4435#
+
+2. Use the script to enable / disable capture file
+
+"""
+
 import requests, json
-#from json_config import hostname
+
 
 # Basic infomation
 host = '192.168.199.152'
@@ -23,10 +48,13 @@ print("This is the signature token: " + signature)
 common_headers = {'Content-type' : 'application/json', 'Authorization' : 'A10 {}'.format(signature)}
 
 
-clideploy_path = "/axapi/v3/clideploy/"
+clideploy_path = "/axapi/v3/capture-config/TEST3/"
 url = base_url + clideploy_path
 clideploy_payload = {
-    "commandList":["do axdebug", "capture save TEST2", "capture detail", "exit"]
+    "capture-config":{
+        "name": "TEST3",
+        "enable": "1"
+    }
 }
 
 r = requests.post(url, data=json.dumps(clideploy_payload), headers=common_headers, verify=False)
