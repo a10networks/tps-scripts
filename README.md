@@ -3,4 +3,4 @@
 A10 Network Thunder Threat Protection Applicance (TPS) Scripts
 
 ## Related Repo
-- [TPS Collection](https://github.com/ericchou1/tps-collection)
+- [TPS Collection](https://github.com/a10networks/tps-collection)
